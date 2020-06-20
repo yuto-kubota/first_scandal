@@ -25,61 +25,6 @@ def find_videos(keyword)
   service.list_searches(:snippet, opt)
 end
 
-
-def template
-   number = 0
-   ran = rand(1..11)
-   youtube = find_videos('SCANDAL')
-   youtube.items.each do |item|
-     number = number + 1
-     if number == ran
-       @youtube_data = item
-     end
-   end
-
-   image = @youtube_data.snippet.thumbnails.default.url
-   youtube_url = "https://www.youtube.com/embed/#{@youtube_data.id.video_id}"
-{
- "type": "bubble",
- "hero": {
-   "type": "image",
-   "url": image,
-   "size": "full",
-   "aspectRatio": "20:13",
-   "aspectMode": "cover"
- },
- "body": {
-   "type": "box",
-   "layout": "vertical",
-   "contents": [
-     {
-       "type": "text",
-       "text": "SCANDAL",
-       "weight": "bold",
-       "size": "xl"
-     }
-   ]
- },
- "footer": {
-   "type": "box",
-   "layout": "vertical",
-   "spacing": "sm",
-   "contents": [
-     {
-       "type": "button",
-       "style": "link",
-       "height": "sm",
-       "action": {
-         "type": "uri",
-         "label": "YouTube",
-         "uri": youtube_url
-       }
-     }
-   ]
- }
-}
-end
-
  def callback
   body = request.body.read
 
@@ -94,11 +39,65 @@ end
     when Line::Bot::Event::Message
       case event.type
       when Line::Bot::Event::MessageType::Text
-        client.reply_message(event['replyToken'],template )
+        client.reply_message(event['replyToken'], template)
       end
     end
   end
   "OK"
+ end
+
+ def template
+    number = 0
+    ran = rand(1..11)
+    youtube = find_videos('SCANDAL')
+    youtube.items.each do |item|
+      number = number + 1
+      if number == ran
+        @youtube_data = item
+      end
+    end
+
+    image = @youtube_data.snippet.thumbnails.default.url
+    youtube_url = "https://www.youtube.com/embed/#{@youtube_data.id.video_id}"
+ {
+  "type": "bubble",
+  "hero": {
+    "type": "image",
+    "url": image,
+    "size": "full",
+    "aspectRatio": "20:13",
+    "aspectMode": "cover"
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "SCANDAL",
+        "weight": "bold",
+        "size": "xl"
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "contents": [
+      {
+        "type": "button",
+        "style": "link",
+        "height": "sm",
+        "action": {
+          "type": "uri",
+          "label": "YouTube",
+          "uri": youtube_url
+        }
+      }
+    ]
+  }
+ }
  end
 
 
