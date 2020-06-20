@@ -52,7 +52,7 @@ end
       case event.type
       when Line::Bot::Event::MessageType::Text
         random_scandal
-        @image = @youtube_data.snippet.thumbnails.default.url
+        # @image = @youtube_data.snippet.thumbnails.default.url
         @youtube_url = "https://www.youtube.com/embed/#{@youtube_data.id.video_id}"
         client.reply_message(event['replyToken'], template)
       end
@@ -66,7 +66,7 @@ end
   "type": "bubble",
   "hero": {
     "type": "image",
-    "url": @image,
+    "url": "https://scandal-4.sakura.ne.jp/scandal/wp-content/uploads/2019/12/main_large_fin.jpg",
     "size": "full",
     "aspectRatio": "20:13",
     "aspectMode": "cover"
