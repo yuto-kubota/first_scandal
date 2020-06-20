@@ -25,6 +25,18 @@ def find_videos(keyword)
   service.list_searches(:snippet, opt)
 end
 
+def random_scandal
+  number = 0
+  ran = rand(1..11)
+  youtube = find_videos('SCANDAL')
+  youtube.items.each do |item|
+    number = number + 1
+    if number == ran
+      @youtube_data = item
+    end
+  end
+end
+
  def callback
   body = request.body.read
 
@@ -39,6 +51,9 @@ end
     when Line::Bot::Event::Message
       case event.type
       when Line::Bot::Event::MessageType::Text
+        random_scandal
+        @image = @youtube_data.snippet.thumbnails.default.url
+        @youtube_url = "https://www.youtube.com/embed/#{@youtube_data.id.video_id}"
         client.reply_message(event['replyToken'], template)
       end
     end
@@ -47,23 +62,11 @@ end
  end
 
  def template
-    number = 0
-    ran = rand(1..11)
-    youtube = find_videos('SCANDAL')
-    youtube.items.each do |item|
-      number = number + 1
-      if number == ran
-        @youtube_data = item
-      end
-    end
-
-    image = @youtube_data.snippet.thumbnails.default.url
-    youtube_url = "https://www.youtube.com/embed/#{@youtube_data.id.video_id}"
  {
   "type": "bubble",
   "hero": {
     "type": "image",
-    "url": image,
+    "url": @image,
     "size": "full",
     "aspectRatio": "20:13",
     "aspectMode": "cover"
@@ -92,7 +95,7 @@ end
         "action": {
           "type": "uri",
           "label": "YouTube",
-          "uri": youtube_url
+          "uri": @youtube_url
         }
       }
     ]
