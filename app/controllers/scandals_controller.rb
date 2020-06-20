@@ -70,7 +70,7 @@ end
    "type": "bubble",
    "hero": {
      "type": "image",
-     "url": "https://scandal4.sakura.ne.jp/scandal/wpcontent/uploads/2019/12/main_large_fin.jpg",
+     "url": "#{@image}",
      "size": "full",
      "aspectRatio": "20:13",
      "aspectMode": "cover"
