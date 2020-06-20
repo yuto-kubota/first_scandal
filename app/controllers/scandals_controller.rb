@@ -1,5 +1,6 @@
 class ScandalsController < ApplicationController
   require 'line/bot'
+  protect_from_forgery :except => [:callback]
 
 def client
   @client ||= Line::Bot::Client.new { |config|
@@ -25,7 +26,7 @@ def find_videos(keyword)
 end
 
 
- def template
+def template
    number = 0
    ran = rand(1..11)
    youtube = find_videos('SCANDAL')
@@ -77,9 +78,7 @@ end
    ]
  }
 }
-
-
- end
+end
 
  def callback
   body = request.body.read
