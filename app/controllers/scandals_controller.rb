@@ -42,7 +42,7 @@ end
 
   signature = request.env['HTTP_X_LINE_SIGNATURE']
   unless client.validate_signature(body, signature)
-    error 400 do 'Bad Request' end
+    return head :bad_request
   end
 
   events = client.parse_events_from(body)
@@ -58,7 +58,7 @@ end
       end
     end
   end
-  "OK"
+  head :ok
  end
 
  def template
