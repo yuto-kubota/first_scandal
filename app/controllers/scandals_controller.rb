@@ -52,7 +52,7 @@ end
       case event.type
       when Line::Bot::Event::MessageType::Text
         random_scandal
-        # @image = @youtube_data.snippet.thumbnails.default.url
+        @image = @youtube_data.snippet.thumbnails.default.url
         @youtube_url = "https://www.youtube.com/embed/#{@youtube_data.id.video_id}"
         client.reply_message(event['replyToken'], template)
       end
@@ -95,7 +95,7 @@ end
         "action": {
           "type": "uri",
           "label": "YouTube",
-          "uri": @youtube_url
+          "uri": "https://www.youtube.com/embed/9KvdsNSCFGM"
         }
       }
     ]
