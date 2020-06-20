@@ -63,45 +63,49 @@ end
  end
 
  def template
- {
-  "type": "bubble",
-  "hero": {
-    "type": "image",
-    "url": "https://scandal-4.sakura.ne.jp/scandal/wp-content/uploads/2019/12/main_large_fin.jpg",
-    "size": "full",
-    "aspectRatio": "20:13",
-    "aspectMode": "cover"
-  },
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "text",
-        "text": "SCANDAL",
-        "weight": "bold",
-        "size": "xl"
-      }
-    ]
-  },
-  "footer": {
-    "type": "box",
-    "layout": "vertical",
-    "spacing": "sm",
-    "contents": [
-      {
-        "type": "button",
-        "style": "link",
-        "height": "sm",
-        "action": {
-          "type": "uri",
-          "label": "YouTube",
-          "uri": "https://www.youtube.com/embed/9KvdsNSCFGM"
-        }
-      }
-    ]
-  }
+   {
+ "type": "flex",
+ "altText": "this is a flex message",
+ "contents": {
+   "type": "bubble",
+   "hero": {
+     "type": "image",
+     "url": "https://scandal4.sakura.ne.jp/scandal/wpcontent/uploads/2019/12/main_large_fin.jpg",
+     "size": "full",
+     "aspectRatio": "20:13",
+     "aspectMode": "cover"
+   },
+ "body": {
+   "type": "box",
+   "layout": "vertical",
+   "contents": [
+     {
+       "type": "text",
+       "text": "SCANDAL",
+       "weight": "bold",
+       "size": "xl"
+     }
+   ]
+ },
+ "footer": {
+   "type": "box",
+   "layout": "vertical",
+   "spacing": "sm",
+   "contents": [
+     {
+       "type": "button",
+       "style": "link",
+       "height": "sm",
+       "action": {
+         "type": "uri",
+         "label": "YouTube",
+         "uri": @youtube_url
+       }
+     }
+   ]
  }
+ }
+}
  end
 
 
