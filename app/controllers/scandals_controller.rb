@@ -34,9 +34,6 @@ def random_scandal
     number = number + 1
     if number == ran
       @youtube_data = item
-    end
-
-    if @youtube_data
       break
     end
   end
