@@ -19,7 +19,7 @@ def find_videos(keyword)
     q: keyword,
     type: 'video',
     channel_id: 'UCSNX8VGaawLFG_bAZuMyQ3Q',
-    max_results: 11,
+    max_results: 30,
     order: :date,
     page_token: next_page_token
   }
@@ -28,7 +28,7 @@ end
 
 def random_scandal
   number = 0
-  ran = rand(1..11)
+  ran = rand(1..30)
   youtube = find_videos('SCANDAL')
   youtube.items.each do |item|
     number = number + 1
