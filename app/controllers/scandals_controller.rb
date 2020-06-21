@@ -26,17 +26,24 @@ def find_videos(keyword)
   service.list_searches(:snippet, opt)
 end
 
+# def random_scandal
+#   number = 0
+#   ran = rand(1..11)
+#   youtube = find_videos('SCANDAL')
+#   youtube.items.each do |item|
+#     number = number + 1
+#     if number == ran
+#       @youtube_data = item
+#       break
+#     end
+#   end
+# end
+
 def random_scandal
-  number = 0
-  ran = rand(1..11)
   youtube = find_videos('SCANDAL')
-  youtube.items.each do |item|
-    number = number + 1
-    if number == ran
-      @youtube_data = item
-      break
-    end
-  end
+  number = youtube.page_info.total_results - 1
+  random = rand(number)
+  @youtube_data = youtube.items[random]
 end
 
  def callback
