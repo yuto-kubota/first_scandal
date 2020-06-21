@@ -53,13 +53,18 @@ end
       case event.type
       when Line::Bot::Event::MessageType::Text
         random_scandal
-        @image = @youtube_data.snippet.thumbnails.default.url
-        @youtube_url = "https://www.youtube.com/embed/#{@youtube_data.id.video_id}"
+        scandal_config
         client.reply_message(event['replyToken'], template)
       end
     end
   end
   head :ok
+ end
+
+ def scandal_config
+   @image = @youtube_data.snippet.thumbnails.high.url
+   @youtube_title = @youtube_data.snippet.title
+   @youtube_url = "https://www.youtube.com/embed/#{@youtube_data.id.video_id}"
  end
 
  def template
@@ -81,7 +86,7 @@ end
    "contents": [
      {
        "type": "text",
-       "text": "SCANDAL",
+       "text": "#{@youtube_title}",
        "weight": "bold",
        "size": "xl"
      }
