@@ -53,9 +53,13 @@ end
     when Line::Bot::Event::Message
       case event.type
       when Line::Bot::Event::MessageType::Text
-        random_scandal
-        scandal_config
-        client.reply_message(event['replyToken'], template)
+        if event.message['text'].eql?('SCANDAL')
+         random_scandal
+         scandal_config
+         client.reply_message(event['replyToken'], template)
+        else
+         client.reply_message(event['replyToken'], template_message)
+        end
       end
     end
   end
@@ -112,6 +116,13 @@ end
  }
  }
 }
+ end
+
+ def template_message
+   {
+    "type": "text",
+    "text": "SCANDALを送ってね"
+   }
  end
 
 
